@@ -1,6 +1,6 @@
 FROM python:3
 
-WORKDIR /usr/src/meusite
+WORKDIR /usr/src
 
 COPY requirements.txt ./
 
