@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  web:
+  gjango:
     build: .
-    command: python manage.py runserver 0.0.0.0:80
+    command: gunicorn meusite.wsgi
     volumes:
       - .:/usr/src/
-    ports:
-      - "80:80"
+#     ports:
+#       - "80:80"
