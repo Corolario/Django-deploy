@@ -2,7 +2,10 @@ version: '3'
 
 services:
   gjango:
-    build: .
+    build:
+      context: .
+      dockerfile: dockerfile-gjango
+    
     command: gunicorn -b :8800 meusite.wsgi
     volumes:
       - .:/usr/src/
