@@ -5,9 +5,16 @@ services:
     build:
       context: .
       dockerfile: dockerfile-gjango
-    
     command: gunicorn -b :8800 meusite.wsgi
     volumes:
       - .:/usr/src/
     ports:
-      - "80:8800"
+      - "8800:8800"
+
+  gunirexy
+    image: nginx
+    volumes:
+      - site-enable:/etc/nginx/site-enable
+      - www/ditea:/var/www/sitea
+    ports:
+      - "80:80"
