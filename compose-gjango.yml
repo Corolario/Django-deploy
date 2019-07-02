@@ -5,16 +5,13 @@ services:
     build:
       context: .
       dockerfile: dockerfile-gjango
-    command: gunicorn -b :8800 meusite.wsgi
+    command: gunicorn --bind unix:/usr/src/gun.sock meusite.wsgi
     volumes:
       - .:/usr/src/
-    ports:
-      - "8800:8800"
 
   gunirexy
     image: nginx
     volumes:
-      - site-enable:/etc/nginx/site-enable
-      - www/ditea:/var/www/sitea
+      - .:/usr/src/
     ports:
       - "80:80"
