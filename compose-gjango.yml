@@ -5,11 +5,11 @@ services:
     build:
       context: .
       dockerfile: dockerfile-gjango
-    command: gunicorn --bind unix:/usr/src/gun.sock meusite.wsgi
+    command: gunicorn --bind unix:/usr/src/gunicorn.sock meusite.wsgi
     volumes:
       - .:/usr/src/
 
-  gunirexy
+  reproxy
     image: nginx
     volumes:
       - .:/usr/src/
