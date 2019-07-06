@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  gjango:
+    build:
+      context: .
+      dockerfile: dockerfile-gjango
+    command: gunicorn -b :8000 meusite.wsgi
+    volumes:
+      - .:/usr/src/
+    environment:
+      - VIRTUAL_HOST=aa.forense.cf
+      - LETSENCRYPT_HOST=aa.forense.cf
+      - VIRTUAL_PORT=8000
+    expose:
+      - "8000"
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
