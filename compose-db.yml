@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: senharoot
+      MYSQL_DATABASE: nomedb
+      MYSQL_USER: nomeusua
+      MYSQL_PASSWORD: senhausua
+#    ports:
+#      - 3306:3306  
+    networks:
+      - dentro
+
+  adminer:
+    image: adminer
+    restart: always
+#    ports:
+#      - 8080:8080
+    expose:
+      - "8080"
+    networks:
+      - dentro
+      - fora
+    environment:
+      - VIRTUAL_HOST=bb.forense.cf
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_HOST=bb.forense.cf
+
+networks:
+  dentro:
+  fora:
+    external:
+      name: nginx-proxy
