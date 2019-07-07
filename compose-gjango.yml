@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile-gjango
-    command: gunicorn -b :8000 meusite.wsgi
+    command: gunicorn --bind=unix:/gunicorn.sock meusite.wsgi
     volumes:
       - .:/usr/src/
     environment:
