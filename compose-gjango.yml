@@ -5,26 +5,17 @@ services:
     build:
       context: .
       dockerfile: dockerfile-gjango
-    command: gunicorn --bind=unix:/usr/src/gunicorn.sock meusite.wsgi
+    command: gunicorn --bind=unix:/usr/src/sock/gunicorn.sock meusite.wsgi
     volumes:
       - .:/usr/src/
-    environment:
-      - VIRTUAL_HOST=aa.forense.cf
-      - LETSENCRYPT_HOST=aa.forense.cf
-      - VIRTUAL_PORT=8000
-    expose:
-      - "8000"
 
   nginx:
     image: nginx:latest
     ports:
       - 80:80
-      - 443:443
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
-      - .:/usr/share/nginx/
-
-#networks:
-#  default:
-#    external:
-#      name: nginx-proxy
+      - ./sock/:/etc/nginx/sock/
+      - ./static/:/usr/share/nginx/static/
+    depends_on:
+      - gjango
