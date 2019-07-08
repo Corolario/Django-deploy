@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: dockerfile-gjango
-    command: gunicorn --bind=unix:/gunicorn.sock meusite.wsgi
+    command: gunicorn --bind=unix:/usr/src/gunicorn.sock meusite.wsgi
     volumes:
       - .:/usr/src/
     environment:
@@ -21,7 +21,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - .:/usr/share/nginx/
 
 #networks:
 #  default:
