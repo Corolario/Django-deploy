@@ -30,3 +30,6 @@ services:
       - ./static/:/usr/share/nginx/static/
     depends_on:
       - gjango
+
+volumes:
+  sock:
