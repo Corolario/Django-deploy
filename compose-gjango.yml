@@ -26,8 +26,9 @@ services:
       - 80:80
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
-      - sock:/etc/nginx/sock/
+      - ./certs/:/etc/nginx/certs/
       - ./static/:/usr/share/nginx/static/
+      - sock:/etc/nginx/sock/
     depends_on:
       - gjango
 
