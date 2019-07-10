@@ -27,7 +27,7 @@ services:
       - 443:443
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
-      - ./meusite/static/:/usr/share/nginx/static/
+      - ./src/static/:/usr/share/nginx/static/
       - ./certs/:/etc/nginx/certs/
       - sock:/etc/nginx/sock/
     depends_on:
