@@ -7,10 +7,10 @@ services:
       dockerfile: dockerfile-gjango
     command: gunicorn --bind=unix:/usr/sock/gunicorn.sock meusite.wsgi
     volumes:
-      - .:/usr/src/
+      - ./src:/usr/src/
       - sock:/usr/sock/
-    depends_on:
-      - mdb
+#    depends_on:
+#      - mdb
 
   mdb:
     image: mariadb
@@ -27,8 +27,8 @@ services:
       - 443:443
     volumes:
       - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./meusite/static/:/usr/share/nginx/static/
       - ./certs/:/etc/nginx/certs/
-      - ./static/:/usr/share/nginx/static/
       - sock:/etc/nginx/sock/
     depends_on:
       - gjango
